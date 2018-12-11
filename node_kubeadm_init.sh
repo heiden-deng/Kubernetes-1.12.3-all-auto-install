@@ -98,6 +98,8 @@ mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 # 重要：必须安装一个pod网络附加扩展组件 ，我选择安装flanneld网络组件
+docker pull heiden/flannel:v0.10.0-amd64
+docker tag heiden/flannel:v0.10.0-amd64 quay.io/coreos/flannel:v0.10.0-amd64
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 # 注意：备份类似以下格式的输出内容：用于节点加入使用
 # kubeadm join 192.168.119.212:6443 --token qknvfe.v02ypyxnjvzjjzcs --discovery-token-ca-cert-hash sha256:18c361e1e5031ab1fb0c195b3dff6b2f3557c98db621cf34077afe66845e40ab
